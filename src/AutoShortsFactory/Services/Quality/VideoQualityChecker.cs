@@ -138,7 +138,8 @@ public class VideoQualityChecker : IQualityGate
                 CreateNoWindow = true
             };
 
-            using var process = Process.Start(psi)!;
+            using var process = Process.Start(psi)
+                ?? throw new InvalidOperationException("ffprobe 프로세스를 시작할 수 없습니다.");
             var output = await process.StandardOutput.ReadToEndAsync(ct);
             await process.WaitForExitAsync(ct);
             return output;
@@ -187,11 +188,9 @@ public class VideoQualityChecker : IQualityGate
                 CreateNoWindow = true
             };
 
-            using var process = Process.Start(psi)!;
+            using var process = Process.Start(psi)
+                ?? throw new InvalidOperationException("ffmpeg(blackdetect) 프로세스를 시작할 수 없습니다.");
             var output = await process.StandardError.ReadToEndAsync(ct);
-            await process.WaitForExitAsync(ct);
-
-            // black_duration 합산
             var matches = Regex.Matches(output, @"black_duration:(\d+\.?\d*)");
             var totalBlack = matches.Sum(m => double.TryParse(
                 m.Groups[1].Value,
@@ -221,11 +220,9 @@ public class VideoQualityChecker : IQualityGate
                 CreateNoWindow = true
             };
 
-            using var process = Process.Start(psi)!;
+            using var process = Process.Start(psi)
+                ?? throw new InvalidOperationException("ffmpeg(silencedetect) 프로세스를 시작할 수 없습니다.");
             var output = await process.StandardError.ReadToEndAsync(ct);
-            await process.WaitForExitAsync(ct);
-
-            // silence_duration 합산
             var matches = Regex.Matches(output, @"silence_duration: (\d+\.?\d*)");
             var totalSilence = matches.Sum(m => double.TryParse(
                 m.Groups[1].Value,
