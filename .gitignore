@@ -1,0 +1,34 @@
+## .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+## Serilog log files
+logs/
+
+## Daily reports
+reports/
+
+## Working files (TTS audio, video assets, rendered video)
+workspace/
+
+## SQLite DB
+*.db
+*.db-shm
+*.db-wal
+
+## YouTube OAuth token store
+token_store/
+
+## YouTube / Google OAuth credentials (never commit!)
+client_secret.json
+UserProfile.json
+
+## appsettings with real API keys (use environment variables in production)
+appsettings.Production.json
+
+## OS
+.DS_Store
+Thumbs.db
