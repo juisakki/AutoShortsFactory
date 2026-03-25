@@ -1,4 +1,5 @@
 using AutoShortsFactory.Models;
+using ModelScript = AutoShortsFactory.Models.Script;
 
 namespace AutoShortsFactory.Services.Script;
 
@@ -6,7 +7,7 @@ namespace AutoShortsFactory.Services.Script;
 public interface IScriptWriter
 {
     /// <summary>주제와 유형에 맞는 대본 AI 생성</summary>
-    Task<Script> WriteScriptAsync(
+    Task<ModelScript> WriteScriptAsync(
         Topic topic,
         VideoType videoType,
         UserProfile profile,

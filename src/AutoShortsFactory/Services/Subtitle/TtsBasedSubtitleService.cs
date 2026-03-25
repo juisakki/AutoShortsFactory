@@ -1,6 +1,7 @@
 using System.Text;
 using AutoShortsFactory.Models;
 using Microsoft.Extensions.Logging;
+using ModelScript = AutoShortsFactory.Models.Script;
 
 namespace AutoShortsFactory.Services.Subtitle;
 
@@ -14,7 +15,7 @@ public class TtsBasedSubtitleService : ISubtitleService
         _logger = logger;
     }
 
-    public async Task<string> GenerateSrtAsync(Script script, double totalDurationSeconds, string outputPath, CancellationToken ct = default)
+    public async Task<string> GenerateSrtAsync(ModelScript script, double totalDurationSeconds, string outputPath, CancellationToken ct = default)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(outputPath)!);
 

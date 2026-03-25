@@ -21,8 +21,8 @@
     <PackageReference Include="Quartz.Extensions.Hosting" Version="3.13.1" />
     <PackageReference Include="FFMpegCore" Version="5.1.0" />
     <PackageReference Include="SkiaSharp" Version="3.116.1" />
-    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.68.0.3687" />
-    <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.69.0.3674" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.69.0" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="8.0.0" />
   </ItemGroup>
 

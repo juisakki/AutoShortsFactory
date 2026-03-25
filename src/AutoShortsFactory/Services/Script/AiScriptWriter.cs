@@ -3,6 +3,7 @@ using System.Text.Json;
 using AutoShortsFactory.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ModelScript = AutoShortsFactory.Models.Script;
 
 namespace AutoShortsFactory.Services.Script;
 
@@ -23,7 +24,7 @@ public class AiScriptWriter : IScriptWriter
         _logger = logger;
     }
 
-    public async Task<Script> WriteScriptAsync(
+    public async Task<ModelScript> WriteScriptAsync(
         Topic topic,
         VideoType videoType,
         UserProfile profile,
@@ -155,7 +156,7 @@ public class AiScriptWriter : IScriptWriter
     }
 
     /// <summary>GPT 응답에서 대본 파싱</summary>
-    private static Script ParseScript(string content, VideoType videoType, LongFormType? longFormType)
+    private static ModelScript ParseScript(string content, VideoType videoType, LongFormType? longFormType)
     {
         var hook = ExtractSection(content, "[훅]", "[본문]");
         var body = ExtractSection(content, "[본문]", "[CTA]");
@@ -171,7 +172,7 @@ public class AiScriptWriter : IScriptWriter
             ? EstimateDuration(hook + body + cta, 4.5) // 초당 4.5자 (한국어)
             : EstimateDuration(hook + body + cta, 4.5);
 
-        return new Script
+        return new ModelScript
         {
             Hook = hook.Trim(),
             Lines = lines,
@@ -204,9 +205,9 @@ public class AiScriptWriter : IScriptWriter
         => text.Length / charsPerSecond;
 
     /// <summary>API 키 없을 때 사용하는 샘플 대본</summary>
-    private static Script CreateSampleScript(Topic topic, VideoType videoType, LongFormType? longFormType)
+    private static ModelScript CreateSampleScript(Topic topic, VideoType videoType, LongFormType? longFormType)
     {
-        return new Script
+        return new ModelScript
         {
             Hook = $"오늘 알아볼 주제는 '{topic.Title}'입니다!",
             Lines = new List<string>
