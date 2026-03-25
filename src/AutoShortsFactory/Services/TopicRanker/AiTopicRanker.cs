@@ -63,19 +63,19 @@ public class AiTopicRanker : ITopicRanker
             var topicList = string.Join("\n", newCandidates.Take(20).Select((t, i) => $"{i + 1}. {t.Title}"));
             var typeDesc = videoType == VideoType.Shorts ? "유튜브 쇼츠(15~60초)" : "유튜브 롱폼(5~15분)";
 
-            var prompt = $"""
-            다음 주제 목록에서 {typeDesc}으로 제작하기 좋은 순서대로 번호를 골라주세요.
+            var prompt = $$"""
+            다음 주제 목록에서 {{typeDesc}}으로 제작하기 좋은 순서대로 번호를 골라주세요.
             판단 기준:
-            1. {typeDesc} 형식에 적합한가
+            1. {{typeDesc}} 형식에 적합한가
             2. 시청자 관심도가 높은가
             3. 민감하거나 저작권 위험이 없는가
             4. 한국 시청자에게 적합한가
             
             주제 목록:
-            {topicList}
+            {{topicList}}
             
             응답 형식 (JSON 배열만, 설명 없이):
-            [{{"rank": 1, "index": 3, "score": 90}}, {{"rank": 2, "index": 1, "score": 85}}, ...]
+            [{"rank": 1, "index": 3, "score": 90}, {"rank": 2, "index": 1, "score": 85}, ...]
             상위 5개만 반환하세요.
             """;
 
