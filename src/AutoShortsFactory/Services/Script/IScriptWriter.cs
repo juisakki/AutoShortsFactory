@@ -1,6 +1,6 @@
 using AutoShortsFactory.Models;
 
-namespace AutoShortsFactory.Services.Script;
+namespace AutoShortsFactory.Services.ScriptWriter;
 
 /// <summary>대본 생성 서비스 인터페이스</summary>
 public interface IScriptWriter

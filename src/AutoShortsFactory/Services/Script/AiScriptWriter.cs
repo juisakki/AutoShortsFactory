@@ -4,7 +4,7 @@ using AutoShortsFactory.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace AutoShortsFactory.Services.Script;
+namespace AutoShortsFactory.Services.ScriptWriter;
 
 /// <summary>GPT를 이용한 AI 대본 생성 서비스</summary>
 public class AiScriptWriter : IScriptWriter

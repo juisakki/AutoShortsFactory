@@ -1,0 +1,32 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+## Logs and reports
+logs/
+reports/
+
+## Output and temp (runtime generated)
+output/
+temp/
+bgm/
+
+## Database
+*.db
+*.db-journal
+
+## UserProfile (contains personal settings)
+UserProfile.json
+
+## YouTube OAuth token store
+YouTube.AutoShortsFactory/
+
+## Secrets
+client_secret.json
+
+## OS
+.DS_Store
+Thumbs.db
