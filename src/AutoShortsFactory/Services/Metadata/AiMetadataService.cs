@@ -96,7 +96,7 @@ public class AiMetadataService : IMetadataService
         sb.AppendLine("TITLE: [클릭유도 제목 - 50자 이내]");
         sb.AppendLine("DESCRIPTION: [SEO 최적화 설명 - 150~200자, 키워드 포함, 마지막에 구독/좋아요 CTA]");
         sb.AppendLine("TAGS: [태그1, 태그2, ... (10~15개, #없이)]");
-        sb.AppendLine("CATEGORY: [유튜브 카테고리 ID (숫자만, 예: 22=사람과블로그, 28=과학기술, 24=엔터테인먼트, 25=뉴스정치)]");
+        sb.AppendLine("CATEGORY: [유튜브 카테고리 ID (숫자만, 예: 22=사람과 블로그, 28=과학 기술, 24=엔터테인먼트, 25=뉴스 정치)]");
 
         if (project.VideoType == VideoType.Shorts)
             sb.AppendLine("\n참고: 쇼츠 전용 태그 'Shorts'를 반드시 포함하세요.");

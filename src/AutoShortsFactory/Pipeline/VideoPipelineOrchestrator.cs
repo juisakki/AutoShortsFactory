@@ -50,8 +50,8 @@ public class VideoPipelineOrchestrator
         failedProject.RetryCount++;
         _logger.LogInformation("재시도 #{Count}: {Title}", failedProject.RetryCount, failedProject.Topic?.Title);
 
-        // 지수 백오프 대기
-        var delayMs = (int)Math.Pow(2, failedProject.RetryCount) * 5000; // 10초, 20초, 40초
+        // 지수 백오프 대기: RetryCount=1→20초, 2→40초, 3→80초
+        var delayMs = (int)Math.Pow(2, failedProject.RetryCount) * 5000;
         await Task.Delay(delayMs, ct);
 
         return failedProject.VideoType == VideoType.Shorts

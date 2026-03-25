@@ -143,12 +143,10 @@ public class YouTubeUploadService : IUploadService
 
         if (!File.Exists(clientSecretPath))
         {
-            _logger.LogWarning("client_secret.json 없음. 더미 서비스 반환 (개발 모드)");
-            // 개발 환경: 더미 서비스 반환
-            return new YouTubeService(new BaseClientService.Initializer
-            {
-                ApplicationName = "AutoShortsFactory"
-            });
+            throw new FileNotFoundException(
+                $"YouTube OAuth 인증 파일을 찾을 수 없습니다: {clientSecretPath}\n" +
+                "Google Cloud Console에서 OAuth 2.0 클라이언트 ID를 생성하고 client_secret.json을 배치하세요.",
+                clientSecretPath);
         }
 
         await using var stream = new FileStream(clientSecretPath, FileMode.Open, FileAccess.Read);

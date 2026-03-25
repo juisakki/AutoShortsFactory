@@ -116,7 +116,7 @@ public class VideoQualityChecker : IQualityGate
         try
         {
             var ffmpegPath = _config["FFmpeg:FFmpegPath"] ?? "ffmpeg";
-            // blackdetect: 0.98 이상 밝기값이 없는 구간 감지
+            // blackdetect: 0.98 이상 밝기 값이 없는 구간 감지
             var args = $"-i \"{videoPath}\" -vf blackdetect=d=0.1:pic_th=0.98 -an -f null - 2>&1";
             var output = await RunProcessAsync(ffmpegPath, args, ct);
 
